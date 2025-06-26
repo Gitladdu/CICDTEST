@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "jest"
+    	
   },
   "keywords": [],
-  "author": "",
+  "author": "shgupta",
   "license": "ISC",
-  "description": "",
+  "description": "A sample project for CI/CD with Jest testing",
   "devDependencies": {
     "jest": "^30.0.3"
   }
