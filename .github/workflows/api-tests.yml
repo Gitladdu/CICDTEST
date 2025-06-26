@@ -1,5 +1,3 @@
-# .github/workflows/nodejs.yml
-
 name: Node.js CI
 
 on:
@@ -23,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Set up Kubernetes access (if necessary)
+    - name: Set up Kubernetes access
       uses: azure/setup-kubectl@v1
       with:
         kubeconfig: ${{ secrets.KUBECONFIG }}
@@ -31,6 +29,13 @@ jobs:
     - name: Forward port to Kubernetes pod (if necessary)
       run: |
         kubectl port-forward pod/plt-ims-ssnc-k8s-uat-stable-78fc84c595-4622m 4500:80 &
+        # Add a small delay to ensure port-forwarding is up before tests run
+        sleep 5
 
     - name: Run tests
       run: npm test
+
+    - name: Clean up Kubernetes port-forward
+      run: |
+        # Clean up the background process of port forwarding after tests
+        kill $(lsof -t -i:4500)
