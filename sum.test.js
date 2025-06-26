@@ -1,5 +1,11 @@
 const sum = require('./sum');
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+// Positive test
+test('adds 2 + 3 to equal 5', () => {
+  expect(sum(2, 3)).toBe(5);
+});
+
+// Negative test
+test('throws error if non-number input', () => {
+  expect(() => sum('a', 2)).toThrow('Invalid input');
 });
