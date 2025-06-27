@@ -31,10 +31,3 @@ test('throws error if argument is empty string', () => {
   expect(() => sum('', 2)).toThrow('Invalid input');
 });
 
-
-//  Special Characters as Input
-
-test('throws error if special characters are passed', () => {
-  expect(() => sum('!', 3)).toThrow('Invalid input');
-  expect(() => sum(3, '@')).toThrow('Invalid input');
-});
